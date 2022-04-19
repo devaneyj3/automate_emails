@@ -1,23 +1,23 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage, useField } from "formik";
 import emailjs from "@emailjs/browser";
+import "./EmailForm.css";
 
 const MySelect = ({ label, ...props }) => {
 	const [field, meta] = useField(props);
 	return (
-		<div>
+		<>
 			<label htmlFor={props.id || props.name}>{label}</label>
 			<select {...field} {...props} />
 			{meta.touched && meta.error ? (
 				<div className="error">{meta.error}</div>
 			) : null}
-		</div>
+		</>
 	);
 };
 
 const Basic = () => (
-	<div>
-		<h1>Any place in your app!</h1>
+	<div className="form_container">
 		<Formik
 			initialValues={{
 				job: "",
@@ -44,7 +44,7 @@ const Basic = () => (
 						`${job}, ${name}, ${company}, ${to}, ${skill_1}, ${skill_2}, ${skill_3}, ${template}`
 					);
 					emailjs.send(
-						"service_hvxwgj9",
+						process.env.REACT_APP_EMAIL_SERVICE_ID,
 						`template_${template}`,
 						{
 							job,
@@ -55,13 +55,13 @@ const Basic = () => (
 							skill_2,
 							skill_3,
 						},
-						"b6qX3WNsdVhOUeLiC"
+						process.env.REACT_APP_EMAIL_USER_ID
 					);
 					setSubmitting(false);
 				}, 400);
 			}}>
 			{({ isSubmitting }) => (
-				<Form>
+				<Form className="form">
 					<MySelect label="Email Template" name="template">
 						<option value="">Select a template</option>
 						<option value="outreach">Initial Outreach</option>
