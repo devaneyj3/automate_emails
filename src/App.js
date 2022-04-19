@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+
+import EmailForm from "./components/EmailForm";
+import "./App.css";
+
+import emailjs from "@emailjs/browser";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	// const sendInfo = (e) => {
+	// 	emailjs.send(
+	// 		"service_hvxwgj9",
+	// 		"template_job",
+	// 		{
+	// 			job,
+	// 			name,
+	// 			company,
+	// 			to,
+	// 		},
+	// 		"b6qX3WNsdVhOUeLiC"
+	// 	);
+	// };
+	return (
+		<div className="App">
+			<EmailForm />
+		</div>
+	);
 }
 
 export default App;
