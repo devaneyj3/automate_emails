@@ -8,6 +8,11 @@ function App() {
 
 	return (
 		<div className="App">
+			<h1>Welcome to Outreach Automation</h1>
+			<p>
+				Send email templates to company contacts by substituting in different
+				values
+			</p>
 			<label>Outreaches to send? </label>
 			<input
 				type="number"

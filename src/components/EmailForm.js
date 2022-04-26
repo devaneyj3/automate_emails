@@ -7,7 +7,6 @@ const MySelect = ({ label, ...props }) => {
 	const [field, meta] = useField(props);
 	return (
 		<>
-			<label htmlFor={props.id || props.name}>{label}</label>
 			<select {...field} {...props} />
 			{meta.touched && meta.error ? (
 				<div className="error">{meta.error}</div>
@@ -40,9 +39,6 @@ const Basic = () => (
 				const { job, name, company, to, skill_1, skill_2, skill_3, template } =
 					values;
 				setTimeout(() => {
-					console.log(
-						`${job}, ${name}, ${company}, ${to}, ${skill_1}, ${skill_2}, ${skill_3}, ${template}`
-					);
 					emailjs.send(
 						process.env.REACT_APP_EMAIL_SERVICE_ID,
 						`template_${template}`,
@@ -61,9 +57,10 @@ const Basic = () => (
 				}, 400);
 			}}>
 			{({ isSubmitting }) => (
-				<Form className="form">
+				<Form>
 					<MySelect label="Email Template" name="template">
 						<option value="">Select a template</option>
+						<option value="tech-adjacent">Tech Adjacent</option>
 						<option value="outreach">Initial Outreach</option>
 						<option value="follow_up_1">Follow Up 1</option>
 						<option value="follow_up_2">Follow Up 2</option>
@@ -91,7 +88,7 @@ const Basic = () => (
 					<ErrorMessage name="skill_3" component="div" />
 
 					<button type="submit" disabled={isSubmitting}>
-						Submit
+						{isSubmitting ? "Sending..." : "Submit"}
 					</button>
 				</Form>
 			)}

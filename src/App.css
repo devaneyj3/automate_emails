@@ -1,13 +1,10 @@
+.App {
+	margin: 10px;
+	text-align: center;
+}
 .email {
-	justify-content: space-between;
 	flex-wrap: wrap;
+	justify-content: space-around;
 	display: flex;
-}
-
-.email_container {
 	margin: 10% 0 10% 0;
-	width: 50%;
-}
-
-* {
 }
