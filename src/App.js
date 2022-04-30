@@ -1,40 +1,20 @@
-import React, { useState } from "react";
+import * as React from "react";
+import { Routes, Route } from "react-router-dom";
 
-import EmailForm from "./components/EmailForm";
-import "./App.css";
+import Home from "./pages/home";
+import About from "./pages/about";
+import Templates from "./pages/templates";
+import Layout from "./components/layout";
 
 function App() {
-	const [numJobs, setNumJobs] = useState(1);
-
 	return (
-		<div className="App">
-			<h1>Welcome to Outreach Automation</h1>
-			<p>
-				Send email templates to company contacts by substituting in different
-				values
-			</p>
-			<label>Outreaches to send? </label>
-			<input
-				type="number"
-				name="numJobs"
-				min="1"
-				max="100"
-				onChange={(e) => setNumJobs(e.target.value)}
-				value={numJobs}
-			/>
-			<section className="email">
-				{numJobs > 0 &&
-					Array(parseInt(numJobs))
-						.fill(0)
-						.map((j, i) => {
-							return (
-								<div className="email_container" key={i}>
-									<EmailForm />
-								</div>
-							);
-						})}
-			</section>
-		</div>
+		<Layout>
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="about" element={<About />} />
+				<Route path="templates" element={<Templates />} />
+			</Routes>
+		</Layout>
 	);
 }
 
